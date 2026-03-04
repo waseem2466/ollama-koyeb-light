@@ -1,10 +1,7 @@
 FROM ollama/ollama:latest
 
-# Pull a lightweight model at build time
-RUN ollama pull tinyllama
-
 # Expose default port
 EXPOSE 11434
 
-# Run Ollama when container starts
-CMD ["ollama", "serve"]
+# Start Ollama and pull model once service is live
+CMD sh -c "ollama serve & sleep 5 && ollama pull tinyllama && wait"
