@@ -1,5 +1,8 @@
 FROM ollama/ollama:latest
 
+# Clean up unnecessary files to reduce image size
+RUN rm -rf /var/cache/apt/* /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
 # Expose default port
 EXPOSE 11434
 
